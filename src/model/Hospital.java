@@ -20,6 +20,8 @@ public class Hospital {
 		}
 		return con;
 	}
+	
+	//Insert Items
 
 	public String insertItem( String H_Name, String H_Address, String H_City,String H_phonenumber,String H_Desc) {
 		String output = "";
@@ -50,6 +52,8 @@ public class Hospital {
 		return output;
 	}
 
+	//Read Items
+	
 	public String readItems() {
 		String output = "";
 		try {
@@ -94,6 +98,8 @@ public class Hospital {
 		return output;
 	}
 
+	//Update items
+	
 	public String updateItem( String Hospital_ID ,String H_Name, String H_Address, String H_City,String H_phonenumber,String H_Desc) {
 		String output = "";
 		try {
@@ -122,6 +128,8 @@ public class Hospital {
 		return output;
 	}
 
+	//Delete Items
+	
 	public String deleteItem(String Hospital_ID) {
 		String output = "";
 		try {
