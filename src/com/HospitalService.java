@@ -76,7 +76,7 @@ public class HospitalService {
 		return output;
 	}
 	
-	//read file appointements
+	//read file hospitals from appointments
 	
 	@GET
 	@Path("/HospitalAppointments/{Hospital_ID}")
