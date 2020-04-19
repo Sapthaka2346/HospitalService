@@ -76,6 +76,8 @@ public class HospitalService {
 		return output;
 	}
 	
+	//read
+	
 	@GET
 	@Path("/HospitalAppointments/{Hospital_ID}")
 	@Produces(MediaType.TEXT_HTML)
