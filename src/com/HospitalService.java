@@ -75,5 +75,13 @@ public class HospitalService {
 
 		return output;
 	}
+	
+	@GET
+	@Path("/HospitalAppointments/{Hospital_ID}")
+	@Produces(MediaType.TEXT_HTML)
+	public String readHospitalAppointmentsHistory(@PathParam("Hospital_ID") String Hospital_ID) {
+		return itemObj.readHospitalAppointmentsHistory(Hospital_ID);
+		//appointments details for selected hospital
+	}
 
 }

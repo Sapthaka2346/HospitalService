@@ -152,4 +152,66 @@ public class Hospital {
 		}
 		return output;
 	}
+	
+	//Read Code
+	public String readHospitalAppointmentsHistory(String Hospital_ID1) {
+		String output = "";
+		try {
+			Connection con = connect();
+			if (con == null) {
+				return "Error while connecting to the database for reading.";
+			}
+			// Prepare the html table to be displayed
+	        output = "<table border=\"1\">"
+	        + "<tr><th>Appointment Type</th><th>Appointment Number</th><th>Appointment   "
+	   		+ "Description</th><th>Appointment          "
+	   		+ "Date</th><th>User ID</th><th>Doctor ID</th><th>Hospital ID</th><th>Update</th><th>Remove</th></tr>"; 
+	 
+	        String query = "select * from appointment where Hospital_ID="+ Hospital_ID1;    
+	        Statement stmt = con.createStatement();   
+	        ResultSet rs = stmt.executeQuery(query);
+	   
+	  // iterate through the rows in the result set  
+	       while (rs.next())    
+	       {
+		       String appointment_ID = Integer.toString(rs.getInt("appointment_ID"));  
+		       String appointment_type = rs.getString("appointment_type");   
+		       String appointment_no = rs.getString("appointment_no");     
+		       String appointment_desc = rs.getString(("appointment_desc"));  
+		       String appointment_date = rs.getString("appointment_date");
+		       String Ruser_ID = rs.getString("Ruser_ID");
+		       String Rdoctor_ID = rs.getString("Rdoctor_ID");
+		       String Hospital_ID = rs.getString("Hospital_ID");
+	   
+	   
+	    // Add into the html table  
+		       output += "<tr><td>" + appointment_type + "</td>";     
+		       output += "<td>" + appointment_no + "</td>";     
+		       output += "<td>" + appointment_desc + "</td>";    
+		       output += "<td>" + appointment_date + "</td>"; 
+		       output += "<td>" + Ruser_ID + "</td>";     
+		       output += "<td>" + Rdoctor_ID + "</td>";    
+		       output += "<td>" + Hospital_ID + "</td>";
+	 
+	    // buttons     
+		       output += "<td><input name=\"btnUpdate\" type=\"button\"        "
+		   		+"value=\"Update\" class=\"btn btn-secondary\"></td>"     
+				   + "<td><form method=\"post\" action=\"appointments.jsp\">"      
+		   		+ "<input name=\"btnRemove\" type=\"submit\" value=\"Remove\"     "
+		   		+ " class=\"btn btn-danger\">"     
+		   		+ "<input name=\"appointment_ID\" type=\"hidden\" value=\"" + appointment_ID     
+		   		+ "\">" + "</form></td></tr>";    
+		    }
+	       
+	        con.close(); 
+	   
+	   // Complete the html table    
+	         output += "</table>";  
+		} catch (Exception e) {
+			output = "Error while reading the users appointments.";
+			System.err.println(e.getMessage());
+		}
+		return output;
+	}
 }
+
